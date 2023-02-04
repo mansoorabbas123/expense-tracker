@@ -5,7 +5,7 @@ import { GlobalContext } from "../context/GlobalState";
 import { Col, Row } from "react-bootstrap";
 
 export const TransactionList = () => {
-  const { transactions, expenses } = useContext(GlobalContext);
+  const { transactions, expenses, search } = useContext(GlobalContext);
 
   return (
     <>
@@ -14,21 +14,43 @@ export const TransactionList = () => {
         <Col>
           <ul className="list">
             <h5>Credits</h5>
-            {transactions.map((transaction) => (
-              <Transaction key={transaction.id} transaction={transaction} />
-            ))}
+            {transactions
+              .filter((transaction) => {
+                if (search.value == "" || search.type === "expense") {
+                  return transaction;
+                } else if (
+                  transaction.text.toLowerCase().includes(search.value.toLowerCase())
+                ) {
+                  return transaction;
+                }
+              })
+              .map((transaction) => (
+                <Transaction
+                  key={transaction.id}
+                  transaction={transaction}
+                  variant="transaction"
+                />))}
           </ul>
         </Col>
         <Col>
           <ul className="list">
             <h5>Expenses</h5>
-            {expenses.map((transaction) => (
-              <Transaction
-                key={transaction.id}
-                transaction={transaction}
-                variant="expense"
-              />
-            ))}
+            {expenses
+              .filter((expense) => {
+                if (search.value == "" || search.type === "credit") {
+                  return expense;
+                } else if (
+                  expense.text.toLowerCase().includes(search.value.toLowerCase())
+                ) {
+                  return expense;
+                }
+              })
+              .map((expense) => (
+                <Transaction
+                  key={expense.id}
+                  transaction={expense}
+                  variant="expense"
+                />))}
           </ul>
         </Col>
       </Row>

@@ -15,7 +15,6 @@ export const AddExpenses = ({ setActiveForm }) => {
     total_expenses
       .filter((item) => item < 0)
       .reduce((acc, item) => (acc += item), 0) * -1;
-  console.log("expense", expense);
   const total_remaining = remaining - expense;
 
   const { addExpenses } = useContext(GlobalContext);
@@ -55,6 +54,7 @@ export const AddExpenses = ({ setActiveForm }) => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text..."
+            required
           />
         </div>
         <div className="form-control" style={{ border: "none" }}>
@@ -67,6 +67,8 @@ export const AddExpenses = ({ setActiveForm }) => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount..."
+            min={0}
+            required
           />
         </div>
         <button

@@ -40,6 +40,7 @@ export const CreditAmount = ({ setActiveForm }) => {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter text..."
+            required
           />
         </div>
         <div className="form-control" style={{ border: "none" }}>
@@ -52,6 +53,8 @@ export const CreditAmount = ({ setActiveForm }) => {
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             placeholder="Enter amount..."
+            min={0}
+            required
           />
         </div>
         <button

@@ -31,6 +31,16 @@ export default (state, action) => {
           (transaction) => transaction.id !== action.payload
         ),
       };
+      case "SEARCH":
+        return {
+          ...state,
+          search: {
+            type: action.payload.type,
+            value: action.payload.value
+          }
+        };
+       
+     
     default:
       return state;
   }

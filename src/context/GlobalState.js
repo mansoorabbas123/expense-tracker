@@ -6,6 +6,7 @@ const initialState = {
   transactions: [],
   expenses: [],
   budget: 500,
+  search: {type:"expense",value:""}
 };
 
 // Create context
@@ -29,6 +30,13 @@ export const GlobalProvider = ({ children }) => {
       type: "UPDATE_BUDGET",
       payload: amount,
     });
+  }
+
+  function handleSearch (type,value="") {
+    dispatch({
+        type:"SEARCH",
+        payload: {type,value}
+    })
   }
 
   function addTransaction(transaction) {
@@ -63,6 +71,8 @@ export const GlobalProvider = ({ children }) => {
         updateBudgetHanler,
         addExpenses,
         deleteExpenses,
+        search:state.search,
+        handleSearch,
       }}
     >
       {children}
