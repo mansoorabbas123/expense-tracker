@@ -44,10 +44,7 @@ export const CreditAmount = ({ setActiveForm }) => {
           />
         </div>
         <div className="form-control" style={{ border: "none" }}>
-          <label htmlFor="amount">
-            Amount <br />
-            (negative - expense, positive - income)
-          </label>
+          <label htmlFor="amount">Amount </label>
           <input
             type="number"
             value={amount}

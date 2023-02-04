@@ -49,12 +49,10 @@ export const Header = () => {
       .reduce((acc, item) => (acc += item), 0) * -1;
   console.log("expense", expense);
   const total_remaining = remaining - expense;
-  // <h4>Your Balance</h4>
-  // <h1>{remainingMoneyFormatter(totalRemaining)}</h1>
 
   return (
     <div className="mb-5">
-      <h2>Expense Tracker</h2>
+      <h2 className="my-2">Expense Tracker</h2>
       <Row>
         <Col>
           <div
